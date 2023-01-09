@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Weather Dashboard</title>
 </head>
+
 <body>
-    
+    <nav>
+        <h1>Weather Dashboard</h1>
+    </nav>
+
+    <div class="container">
+        <aside>
+            <h3>Search for a City:</h3>
+            <input type="text" placeholder="San Diego"><button>Search</button>
+            <hr>
+            <div id="history"></div>
+        </aside>
+        <main>
+            <section id="current"></section>
+            <section>
+                <h4>5-Day Forecast:
+                    <div id="forecast"></div>
+                </h4>
+            </section>
+        </main>
+    </div>
 </body>
+
 </html>
