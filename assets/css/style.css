@@ -1,5 +1,5 @@
 h1 {
-font-size: 40px;
+font-size: 30px;
 }
 
 body {
@@ -26,29 +26,28 @@ nav {
     display: flex;
     justify-content: space-between;
     align-content: center;
+    height: fit-content;
 }
 
 aside {
     width: 25%;
     display: flex;
     flex-direction: column;
+    background-color: lightgray;
 }
 
 main {
-    width: 65%;
+    width: 70%;
     display: flex;
     flex-direction: column;
 }
 
-
-#forecast {
-    display: flex;
-}
-
 .card {
-    background: #000;
     color: white;
-    width: 18%;
     margin: 5px;
     padding: 5px;
+}
+
+.hide {
+    display: none
 }

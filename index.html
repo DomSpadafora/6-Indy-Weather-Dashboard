@@ -18,16 +18,18 @@
     <div class="container">
         <!--Creating the Search City Section of website-->
         <aside>
-            <h2>Search for a City:</h2>
-            <input type="text" placeholder="Enter City"><button type="button" class="search-btn btn-secondary">Search</button>
+            <h4>Search for a City:</h4>
+            <input type="text" id="city-search" placeholder="Input"><button type="button" class="btn search-btn btn-secondary">Search</button>
             <hr>
-            <div id="history"></div>
-            <button id="clear-history-btn" class="btn btn-sm btn-secondary hide">Clear History</button>
+            <div class="card">
+                <ul class="list-group list-group-flush" id="search-history"></ul>
+                <button id="clear-history-btn" class="btn btn-sm btn-secondary">Clear History</button>
+            </div>
         </aside>
       
         <main>
             <!--Creating Current Weather Section-->
-            <div id="current-weather" class="col-12 col-md-12">
+            <div id="current-weather" class="col-12 col-md-12 hide">
                 <div class="current-city border rounded my-3 px-3 py-3"><h2>City Information:</h2>
                     <p class="mb-0">Temperature: <span id="current-temp"></span></p>
                     <p class="mb-0">Humidity: <span id="current-humidity"></span><p>
@@ -36,7 +38,7 @@
                 </div>
             </div>
             <!--this is 5-day future forecast-->
-            <div id="future-forecast"><h2>5-Day Forecast:</h2></div>
+            <div id="future-forecast" class="hide"><h3>5-Day Forecast:</h3></div>
 
         </main>
     </div>

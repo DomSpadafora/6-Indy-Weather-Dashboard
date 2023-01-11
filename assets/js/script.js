@@ -4,8 +4,9 @@
 // 4. Build HTML with the Data we get from the weather
 
 //global variables 
-var apiKey= '32bab760dbf7801b6e0e943adadda9044';
-var recentSearches = [];
+var apiKey = '32bab760dbf7801b6e0e943adadda9044';
+var searchHistory = $('#search-history')
+var citySearch = $('#city-search')
 
 
 //need to make available recently searched cities
