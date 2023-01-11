@@ -4,30 +4,16 @@
 // 4. Build HTML with the Data we get from the weather
 
 //global variables 
-var apiKey= '38666bf6ec0a15aad4a6332c669202c8';
+var apiKey= '32bab760dbf7801b6e0e943adadda9044';
 var recentSearches = [];
 
-//need to make a list of previously searched cities 
-function searchFunction(datea){
-  recentSearches.push($('#textboxSearch').val());
 
-  $('#textboxSearch').val("");
-  $('#searchHistory').text("");
-
-  $.each(recentSearches, function (index, value) {
-    $('#searchHistory').append("<li class='historyItem'  onclick='addtotextbox("+index+")'>" + value + '</li>');
-}); 
-
-}
- 
-function addtotextbox(id) {
-  $('#textboxSearch').val(recentSearches[id]);
-}
+//need to make available recently searched cities
 
 
 
-///code given by class teacher///
-fetch('http://api.openweathermap.org/geo/1.0/direct?appid=38666bf6ec0a15aad4a6332c669202c8=Orlando'
+
+fetch('http://api.openweathermap.org/geo/1.0/direct?appid=2bab760dbf7801b6e0e943adadda9044&q=Indianapolis'
 )
   .then(function (response) {
     return response.json();
@@ -38,7 +24,7 @@ fetch('http://api.openweathermap.org/geo/1.0/direct?appid=38666bf6ec0a15aad4a633
 
 function getWeather(lat,lon){
   console.log(lat,lon);
-  fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=38666bf6ec0a15aad4a6332c669202c8&units=imperial`
+  fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=2bab760dbf7801b6e0e943adadda9044`
 )
   .then(function (response) {
     return response.json();
