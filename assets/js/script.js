@@ -41,7 +41,7 @@ clearHistoryBtn.on("click", function(){
 //Display and save the search history of cities
 
 
-//Create a conditional function to remove the hide class so the hidden text will show once a city is searched
+//Create a conditional function to remove the 'hide' class so the text will show once a city is searched
 
 
 
