@@ -1,5 +1,4 @@
 
-
 //global variables for 
 var searchHistory = $('#search-history')
 var citySearch = $('#city-search')
