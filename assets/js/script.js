@@ -1,7 +1,4 @@
-// 1. Get the city value from the form
-// 2. Pass the city to the geoCode function
-// 3. Pass the Lat and Long to the GetWeather function
-// 4. Build HTML with the Data we get from the weather
+
 
 //global variables for 
 var searchHistory = $('#search-history')
@@ -12,16 +9,21 @@ var currentTemp = $('#current-temp')
 var currentHumidity = $('#current-humidity')
 var currentWindSpeed = $('#current-wind-speed') 
 var uvIndex = $('#uv-index')
-var previousCities = []
 var currentWeather = $('#current-weather')
 var searchBtn = $('.search-btn')
 var futureForecast = $('#future-forecast')
 //API Key
 var apiKey = '2bab760dbf7801b6e0e943adadda9044';
 
+//Search History Variables
+var lastCitySearched = ""
+var previousCities = []
+
 //creating click event for the city search button    
 searchBtn.on('click', getWeather);
 
+
+//function to display the information that was collected from Open Weather//curent weather 
 function getWeather() {
     var city = citySearch.val()
 
@@ -46,11 +48,16 @@ function getWeather() {
         });
 }
 
-
+//Need to make an API call for the 5-day forcast 
 
 
 
 //Display and save the search history of cities
+
+
+
+// load search history from local storage
+
 
 
 //Create a conditional function to remove the 'hide' class so the text will show once a city is searched
