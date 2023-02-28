@@ -26,7 +26,6 @@ searchBtn.on('click', getWeather);
 //function to display the information that was collected from Open Weather//curent weather 
 function getWeather() {
     var city = citySearch.val()
-
     var requestUrl = `http://api.openweathermap.org/data/2.5/forecast?appid=2bab760dbf7801b6e0e943adadda9044&units=imperial&q=${city}`;
 
     fetch(requestUrl)
@@ -41,8 +40,8 @@ function getWeather() {
 
             $('main').html('')
             $('main').append(`
-        <div id="current-weather" class="col-12 col-md-12 hide">
-                <div class="current-city border rounded px-3 py-3"><h2>${city} ${new Date(dt*1000).toDateString()}</h2>
+            <div id="current-weather" class="col-12 col-md-12 hide">
+                <div class="current-city border rounded px-3 py-3"><h2>${city} ${new Date(dt * 1000).toDateString()}</h2>
                     <img src='http://openweathermap.org/img/w/${icon}.png'>
                     <p>Temperature: ${temp} </p>
                     <p>Humidity: ${humidity}<p>
@@ -51,85 +50,87 @@ function getWeather() {
             </div>
             <div id="forecast" class="hide"><h3>5-Day Forecast:</h3></div>
 
-        `)
+        `))
+}
+    
 
             for (var i = 7; i < data.length; i = i + 7) {
-                
+
                 let { dt, wind: { speed }, main: { temp, humidity }, weather: [{ icon }] } = data.list[i];
 
                 $('#forecast').append(`
                 <div  class="card">
-                <div class="border rounded px-3 py-3"><h2>${new Date(dt*1000).toDateString()}</h2>
+                <div class="border rounded px-3 py-3"><h2>${new Date(dt * 1000).toDateString()}</h2>
                     <img src='http://openweathermap.org/img/w/${icon}.png'>
                     <p>Temperature: ${temp} </p>
                     <p>Humidity: ${humidity}<p>
                     <p>Wind Speed: ${speed}</p>
                 </div>
             </div>
+        
+            `)
 
             }
-        });
-}
 
-//Need to make an API call for the 5-day forcast 
+            //Need to make an API call for the 5-day forcast 
 
 
 
-//Display and save the search history of cities
+            //Display and save the search history of cities
 
-var searchHistoryList = function (cityName) {
-    $('.past-search:contains("' + cityName + '")').remove();
+            var searchHistoryList = function (cityName) {
+                $('.past-search:contains("' + cityName + '")').remove();
 
-    // create entry with city name
-    var searchHistoryEntry = $("<p>");
-    searchHistoryEntry.addClass("past-search");
-    searchHistoryEntry.text(cityName);
+                // create entry with city name
+                var searchHistoryEntry = $("<p>");
+                searchHistoryEntry.addClass("past-search");
+                searchHistoryEntry.text(cityName);
 
-    // create container for entry
-    var searchEntryContainer = $("<div>");
-    searchEntryContainer.addClass("past-search-container");
+                // create container for entry
+                var searchEntryContainer = $("<div>");
+                searchEntryContainer.addClass("past-search-container");
 
-    // append entry to container
-    searchEntryContainer.append(searchHistoryEntry);
+                // append entry to container
+                searchEntryContainer.append(searchHistoryEntry);
 
-    // append entry container to search history container
-    var searchHistoryContainerEl = $("#search-history-container");
-    searchHistoryContainerEl.append(searchEntryContainer);
+                // append entry container to search history container
+                var searchHistoryContainerEl = $("#search-history-container");
+                searchHistoryContainerEl.append(searchEntryContainer);
 
-    if (savedSearches.length > 0) {
-        // update savedSearches array with previously saved searches
-        var previousSavedSearches = localStorage.getItem("savedSearches");
-        savedSearches = JSON.parse(previousSavedSearches);
-    }
+                if (savedSearches.length > 0) {
+                    // update savedSearches array with previously saved searches
+                    var previousSavedSearches = localStorage.getItem("savedSearches");
+                    savedSearches = JSON.parse(previousSavedSearches);
+                }
 
-    // add city name to array of saved searches
-    savedSearches.push(cityName);
-    localStorage.setItem("savedSearches", JSON.stringify(savedSearches));
+                // add city name to array of saved searches
+                savedSearches.push(cityName);
+                localStorage.setItem("savedSearches", JSON.stringify(savedSearches));
 
-    // reset search input
-    $("#search-input").val("");
+                // reset search input
+                $("#search-input").val("");
 
-};
+            };
 
-// load search history from local storage
+            // load search history from local storage
 
-var loadSearchHistory = function () {
-    // get saved search history
-    var savedSearchHistory = localStorage.getItem("savedSearches");
+            var loadSearchHistory = function () {
+                // get saved search history
+                var savedSearchHistory = localStorage.getItem("savedSearches");
 
-    // return false if there is no previous saved searches
-    if (!savedSearchHistory) {
-        return false;
-    }
+                // return false if there is no previous saved searches
+                if (!savedSearchHistory) {
+                    return false;
+                }
 
-    // turn saved search history string into array
-    savedSearchHistory = JSON.parse(savedSearchHistory);
+                // turn saved search history string into array
+                savedSearchHistory = JSON.parse(savedSearchHistory);
 
-    // go through savedSearchHistory array and make entry for each item in the list
-    for (var i = 0; i < savedSearchHistory.length; i++) {
-        searchHistoryList(savedSearchHistory[i]);
-    }
-};
+                // go through savedSearchHistory array and make entry for each item in the list
+                for (var i = 0; i < savedSearchHistory.length; i++) {
+                    searchHistoryList(savedSearchHistory[i]);
+                }
+            };
 
 
 
