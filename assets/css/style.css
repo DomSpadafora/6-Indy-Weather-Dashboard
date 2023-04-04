@@ -1,26 +1,20 @@
 h1 {
-font-size: 30px;
+font-size: 50px;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-}
 nav {
     text-align: center;
     background: linear-gradient(35deg, rgb(29, 124, 208) 50%, black 80%);
     color: white;
-    margin: 0;
-    padding: 0;
+    padding: 1rem;
 }
 
 .container {
     width: 90%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
-    align-content: center;
-    height: fit-content;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 aside {
@@ -28,31 +22,103 @@ aside {
     display: flex;
     flex-direction: column;
     background-color: lightgray;
+    margin-top: 1rem;
 }
 
 main {
     width: 70%;
-    display: flex;
-    flex-direction: column;
 }
 
 .card {
     color: white;
     margin: 5px;
     padding: 5px;
-    display: flex;
-    flex-wrap: wrap;
+
 }
 
 #fiveDay {
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    width: 17%;
     box-shadow: 5px 5px 5px 5px;
-    margin: 1rem
+    margin: 1rem;
+    text-align: center;
+    justify-content: center;
+}
+
+#five-day-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+#current-weather {
+    box-shadow: 5px 5px 5px 5px;
 }
 
 p {
     margin: 0px
+}
+
+/* Media queries for different devices */
+@media only screen and (max-width: 768px) {
+    /* Small devices (phones) */
+    h1 {
+        font-size: 30px;
+    }
+
+    aside {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    #fiveDay {
+        width: 100%;
+        margin: 2rem 0;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Medium devices (tablets) */
+    h1 {
+        font-size: 40px;
+    }
+
+    aside {
+        width: 30%;
+        margin-top: 1rem;
+    }
+
+    main {
+        width: 65%;
+    }
+
+    #fiveDay {
+        width: 20%;
+        margin: 1rem;
+    }
+}
+
+@media only screen and (min-width: 1025px) {
+    /* Large devices (desktops) */
+    h1 {
+        font-size: 50px;
+    }
+
+    aside {
+        width: 25%;
+        margin-top: 1rem;
+    }
+
+    main {
+        width: 70%;
+    }
+
+    #fiveDay {
+        width: 17%;
+        margin: 1rem;
+    }
 }

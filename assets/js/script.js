@@ -1,16 +1,16 @@
 
 //global variables for 
-var searchHistory = $('#search-history')
+// var searchHistory = $('#search-history')
 var citySearch = $('#city-search')
-var clearHistoryBtn = $('#clear-history-btn')
-var currentCity = $('#current-city')
-var currentTemp = $('#current-temp')
-var currentHumidity = $('#current-humidity')
-var currentWindSpeed = $('#current-wind-speed')
-var uvIndex = $('#uv-index')
-var currentWeather = $('#current-weather')
+// var clearHistoryBtn = $('#clear-history-btn')
+// var currentCity = $('#current-city')
+// var currentTemp = $('#current-temp')
+// var currentHumidity = $('#current-humidity')
+// var currentWindSpeed = $('#current-wind-speed')
+// var uvIndex = $('#uv-index')
+// var currentWeather = $('#current-weather')
 var searchBtn = $('.search-btn')
-var futureForecast = $('#future-forecast')
+// var futureForecast = $('#future-forecast')
 
 //API Key
 var apiKey = '2bab760dbf7801b6e0e943adadda9044';
@@ -40,7 +40,8 @@ function getWeather() {
 
             $('main').html('')
             $('main').append(`
-            <div id="current-weather" class="col-12 col-md-12 hide">
+            <h3>Current Weather:</h3></div>
+            <div id="current-weather" class="col-12 col-md-12 border rounded px-3 py-3 mb-3">
                 <div class="current-city border rounded px-3 py-3"><h2>${city} ${new Date(dt * 1000).toDateString()}</h2>
                     <img src='http://openweathermap.org/img/w/${icon}.png'>
                     <p>Temperature: ${temp} </p>
@@ -52,11 +53,13 @@ function getWeather() {
 
         `)
 
-        for (var i = 1; i < 19; i++) {
+        for (var i = 0; i < data.list.length; i++) {
+            // Check if the current index is a multiple of 8
+            if (i % 8 === 0) {
 
             let { dt, wind: { speed }, main: { temp, humidity }, weather: [{ icon }] } = data.list[i];
         
-            $('main').append(`
+            $('#five-day-cards').append(`
             <div id="fiveDay" class="border rounded px-3 py-3">
                 <div class="border rounded px-3 py-3">
                     <h3>${new Date(dt * 1000).toDateString()}</h3>
@@ -67,6 +70,7 @@ function getWeather() {
                 </div>
             </div>
             `)
+            }
         }
 
 
