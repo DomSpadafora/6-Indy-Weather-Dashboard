@@ -61,7 +61,7 @@ function getWeather() {
         
             $('#five-day-cards').append(`
             <div id="fiveDay" class="border rounded px-3 py-3">
-                <div class="border rounded px-3 py-3">
+                <div id='interiorCard' class="border rounded px-3 py-3">
                     <h3>${new Date(dt * 1000).toDateString()}</h3>
                     <img src='http://openweathermap.org/img/w/${icon}.png'>
                     <p>Temperature: ${temp} </p>
