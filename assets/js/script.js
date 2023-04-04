@@ -48,17 +48,18 @@ function getWeather() {
                     <p>Wind Speed: ${speed}</p>
                 </div>
             </div>
-            <div id="forecast" class="hide"><h3>5-Day Forecast:</h3></div>
+            <h3>5-Day Forecast:</h3></div>
 
         `)
 
-        for (var i = 1; i < 6; i++) {
+        for (var i = 1; i < 19; i++) {
 
             let { dt, wind: { speed }, main: { temp, humidity }, weather: [{ icon }] } = data.list[i];
         
-            $('#forecast').append(`
-            <div>
-                <div class="border rounded px-3 py-3"><h3>${new Date(dt * 1000).toDateString()}</h3>
+            $('main').append(`
+            <div id="fiveDay" class="border rounded px-3 py-3">
+                <div class="border rounded px-3 py-3">
+                    <h3>${new Date(dt * 1000).toDateString()}</h3>
                     <img src='http://openweathermap.org/img/w/${icon}.png'>
                     <p>Temperature: ${temp} </p>
                     <p>Humidity: ${humidity}<p>

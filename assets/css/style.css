@@ -40,8 +40,18 @@ main {
     color: white;
     margin: 5px;
     padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
+#fiveDay {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 5px 5px 5px 5px;
+    margin: 1rem
+}
 
 p {
     margin: 0px
