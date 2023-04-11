@@ -53,13 +53,13 @@ function getWeather() {
 
         `)
 
-        for (var i = 0; i < data.list.length; i++) {
-            // Check if the current index is a multiple of 8
-            if (i % 8 === 0) {
+            for (var i = 0; i < data.list.length; i++) {
+                // Check if the current index is a multiple of 8
+                if (i % 8 === 0) {
 
-            let { dt, wind: { speed }, main: { temp, humidity }, weather: [{ icon }] } = data.list[i];
-        
-            $('#five-day-cards').append(`
+                    let { dt, wind: { speed }, main: { temp, humidity }, weather: [{ icon }] } = data.list[i];
+
+                    $('#five-day-cards').append(`
             <div id="fiveDay" class="border rounded px-3 py-3">
                 <div id='interiorCard' class="border rounded px-3 py-3">
                     <h3>${new Date(dt * 1000).toDateString()}</h3>
@@ -70,18 +70,10 @@ function getWeather() {
                 </div>
             </div>
             `)
+                }
             }
-        }
-
-
         })
 }
-
-
-
-
-
-
 
 //Display and save the search history of cities
 
