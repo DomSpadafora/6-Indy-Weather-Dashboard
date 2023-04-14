@@ -1,6 +1,5 @@
 var citySearch = $('#city-search')
 var searchBtn = $('.search-btn')
-var lastCitySearched = ""
 var previousCities = []
 
 //API Key
@@ -67,6 +66,7 @@ function getWeather() {
                 }
             }
         })
+
 }
 
 //Display and save the search history of cities
@@ -86,18 +86,17 @@ function loadSearchHistory() {
     // get the array of previous cities from local storage
     var previousCitiesStr = localStorage.getItem('previousCities');
     if (previousCitiesStr) {
-        previousCities = JSON.parse(previousCitiesStr);
+      previousCities = JSON.parse(previousCitiesStr);
     }
-
+  
     // append each previous city to the search history container
     var searchHistoryContainer = $('#search-history');
-    previousCities.forEach(function (city) {
-
-        var listItem = $('<button>').text(city);
-        listItem.on('click', function () {
-            getWeather(city);
-        });
-        searchHistoryContainer.append(listItem);
+    previousCities.forEach(function(city) {
+      var listItem = $('<button>').text(city);
+      listItem.on('click', function() {
+        getWeather(city);
+      });
+      searchHistoryContainer.append(listItem);
     });
 }
 
