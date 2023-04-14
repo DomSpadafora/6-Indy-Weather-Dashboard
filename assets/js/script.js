@@ -20,7 +20,13 @@ var lastCitySearched = ""
 var previousCities = []
 
 //creating click event for the city search button    
-searchBtn.on('click', getWeather);
+searchBtn.on('click', function() {
+    var city = citySearch.val().trim();
+    if (city) {
+      getWeather(city);
+      saveSearchHistory(city);
+    }
+  });
 
 
 //function to display the information that was collected from Open Weather//curent weather 
@@ -77,60 +83,34 @@ function getWeather() {
 
 //Display and save the search history of cities
 
-var searchHistoryList = function (cityName) {
-    $('.past-search:contains("' + cityName + '")').remove();
-
-    // create entry with city name
-    var searchHistoryEntry = $("<p>");
-    searchHistoryEntry.addClass("past-search");
-    searchHistoryEntry.text(cityName);
-
-    // create container for entry
-    var searchEntryContainer = $("<div>");
-    searchEntryContainer.addClass("past-search-container");
-
-    // append entry to container
-    searchEntryContainer.append(searchHistoryEntry);
-
-    // append entry container to search history container
-    var searchHistoryContainerEl = $("#search-history-container");
-    searchHistoryContainerEl.append(searchEntryContainer);
-
-    if (savedSearches.length > 0) {
-        // update savedSearches array with previously saved searches
-        var previousSavedSearches = localStorage.getItem("savedSearches");
-        savedSearches = JSON.parse(previousSavedSearches);
-    }
-
-    // add city name to array of saved searches
-    savedSearches.push(cityName);
-    localStorage.setItem("savedSearches", JSON.stringify(savedSearches));
-
-    // reset search input
-    $("#search-input").val("");
-
-};
+function saveSearchHistory(city) {
+    // add the current city to the array of previous cities
+    previousCities.push(city);
+    
+    // store the array in local storage
+    localStorage.setItem('previousCities', JSON.stringify(previousCities));
+  }
 
 // load search history from local storage
 
-var loadSearchHistory = function () {
-    // get saved search history
-    var savedSearchHistory = localStorage.getItem("savedSearches");
-
-    // return false if there is no previous saved searches
-    if (!savedSearchHistory) {
-        return false;
+// function to load the search history from local storage and append it to the search history container
+function loadSearchHistory() {
+    // get the array of previous cities from local storage
+    var previousCitiesStr = localStorage.getItem('previousCities');
+    if (previousCitiesStr) {
+      previousCities = JSON.parse(previousCitiesStr);
     }
-
-    // turn saved search history string into array
-    savedSearchHistory = JSON.parse(savedSearchHistory);
-
-    // go through savedSearchHistory array and make entry for each item in the list
-    for (var i = 0; i < savedSearchHistory.length; i++) {
-        searchHistoryList(savedSearchHistory[i]);
-    }
-};
-
+  
+    // append each previous city to the search history container
+    var searchHistoryContainer = $('#search-history');
+    previousCities.forEach(function(city) {
+      var listItem = $('<li>').text(city);
+      searchHistoryContainer.append(listItem);
+    });
+  }
+  
+  // call the loadSearchHistory function when the page loads
+  loadSearchHistory();
 
 
 
