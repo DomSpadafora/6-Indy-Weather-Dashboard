@@ -1,32 +1,20 @@
-
-//global variables for 
-// var searchHistory = $('#search-history')
 var citySearch = $('#city-search')
-// var clearHistoryBtn = $('#clear-history-btn')
-// var currentCity = $('#current-city')
-// var currentTemp = $('#current-temp')
-// var currentHumidity = $('#current-humidity')
-// var currentWindSpeed = $('#current-wind-speed')
-// var uvIndex = $('#uv-index')
-// var currentWeather = $('#current-weather')
 var searchBtn = $('.search-btn')
-// var futureForecast = $('#future-forecast')
+var lastCitySearched = ""
+var previousCities = []
 
 //API Key
 var apiKey = '2bab760dbf7801b6e0e943adadda9044';
 
-//Search History Variables
-var lastCitySearched = ""
-var previousCities = []
 
 //creating click event for the city search button    
-searchBtn.on('click', function() {
+searchBtn.on('click', function () {
     var city = citySearch.val().trim();
     if (city) {
-      getWeather(city);
-      saveSearchHistory(city);
+        getWeather(city);
+        saveSearchHistory(city);
     }
-  });
+});
 
 
 //function to display the information that was collected from Open Weather//curent weather 
@@ -86,10 +74,10 @@ function getWeather() {
 function saveSearchHistory(city) {
     // add the current city to the array of previous cities
     previousCities.push(city);
-    
+
     // store the array in local storage
     localStorage.setItem('previousCities', JSON.stringify(previousCities));
-  }
+}
 
 // load search history from local storage
 
@@ -98,19 +86,30 @@ function loadSearchHistory() {
     // get the array of previous cities from local storage
     var previousCitiesStr = localStorage.getItem('previousCities');
     if (previousCitiesStr) {
-      previousCities = JSON.parse(previousCitiesStr);
+        previousCities = JSON.parse(previousCitiesStr);
     }
-  
+
     // append each previous city to the search history container
     var searchHistoryContainer = $('#search-history');
-    previousCities.forEach(function(city) {
-      var listItem = $('<li>').text(city);
-      searchHistoryContainer.append(listItem);
+    previousCities.forEach(function (city) {
+
+        var listItem = $('<button>').text(city);
+        listItem.on('click', function () {
+            getWeather(city);
+        });
+        searchHistoryContainer.append(listItem);
     });
-  }
-  
-  // call the loadSearchHistory function when the page loads
-  loadSearchHistory();
+}
+
+$('#clear-history-btn').on('click', function () {
+    localStorage.clear();
+    $('#search-history').empty();
+});
+
+
+
+// call the loadSearchHistory function when the page loads
+loadSearchHistory();
 
 
 
