@@ -13,6 +13,8 @@ searchBtn.on('click', function () {
         getWeather(city);
         saveSearchHistory(city);
     }
+    loadSearchHistory();
+    
 });
 
 
@@ -86,19 +88,31 @@ function loadSearchHistory() {
     // get the array of previous cities from local storage
     var previousCitiesStr = localStorage.getItem('previousCities');
     if (previousCitiesStr) {
-      previousCities = JSON.parse(previousCitiesStr);
+        previousCities = JSON.parse(previousCitiesStr);
     }
-  
+
     // append each previous city to the search history container
     var searchHistoryContainer = $('#search-history');
-    previousCities.forEach(function(city) {
-      var listItem = $('<button>').text(city);
-      listItem.on('click', function() {
-        getWeather(city);
-      });
-      searchHistoryContainer.append(listItem);
+    previousCities.forEach(function (city) {
+        var listItem = $('<button>').text(city);
+        listItem.on('click', function () {
+            getWeather(city);
+            console.log('working')
+        });
+        searchHistoryContainer.append(listItem);
     });
 }
+
+// function handleSearchHistoryClick(e) {
+//     // Don't do search if current elements is not a search history button
+//     if (!e.target.matches('.btn-history')) {
+//         return;
+//     }
+
+//     var btn = e.target;
+//     var search = btn.getAttribute('data-search');
+//     fetchCoords(search);
+// }
 
 $('#clear-history-btn').on('click', function () {
     localStorage.clear();
